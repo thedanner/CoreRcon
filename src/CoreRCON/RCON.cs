@@ -226,8 +226,11 @@ namespace CoreRCON
         public void Dispose()
         {
             _connected = false;
-            _tcp.Shutdown(SocketShutdown.Both);
-            _tcp.Dispose();
+            if (_tcp != null)
+            {
+                _tcp.Shutdown(SocketShutdown.Both);
+                _tcp.Dispose();
+            }
         }
 
         /// <summary>
